@@ -24,4 +24,5 @@ insert into candidatos (nome, foto, num) values ('Michel Temer','https://encrypt
 insert into candidatos (nome, foto, num) values ('Dilma Rousseff','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnTnlJuIBOMgoedd3E2LLZWiD-pY-8fUQ_H4Ec3KnD9v9KeK4nk8bB4gPnVW_OsvXbw5xrpPu8KrsaXsaVBvShN4BOEqmPAAI706mLs6aHEw&s=10',10);
 insert into candidatos (nome, foto, num) values ('Giga Chad','https://i.scdn.co/image/ab67616d00001e024198c92ec28483da79c7894d',99);
 insert into candidatos (nome, foto, num) values ('John Cena','https://play-lh.googleusercontent.com/XrnuUDdehLQGw8oWOP7XRvY93x3ffH_gWu1sNoW108cm2pTIShtqwtctaqmv4FQjEHfMcgo99-9CUqK6wH0pJjM',50);
+insert into candidatos (nome, foto,num) values ('Lobisomem Pidão', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVc-IC8TvbTGZ9IUW6aaUpjg_rqTewjanQq85p5D66OVAqrzJx0x192FSt&s=10', 66);
 

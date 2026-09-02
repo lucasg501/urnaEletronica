@@ -206,6 +206,9 @@ export default function Home() {
     if(Number(candidato?.num) === 50) {
       arquivoSom = "/cena.mp3";
     }
+    if(Number(candidato?.num) === 66) {
+      arquivoSom = "/pidao.mp3";
+    }
 
     const audio = new Audio(arquivoSom);
 
