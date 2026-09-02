@@ -1,0 +1,20 @@
+create schema urna;
+use urna;
+
+create table candidatos(
+	idCand int not null primary key auto_increment,
+    nome varchar(100),
+    foto text,
+    num int
+);
+
+create table votos(
+	idVoto int not null primary key auto_increment,
+    idCand int not null,
+    foreign key (idCand) references candidatos(idCand)
+);
+
+insert into candidatos (nome, foto, num) values ('Luis Inacio Lula da Silva','https://images.jota.info/wp-content/uploads/2026/08/55487506368-8b95ec0218-k.jpg',13);
+insert into candidatos (nome, foto, num) values ('Jair Messias Bolsonaro','https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Jair_Bolsonaro_2019_Portrait_%283x4_cropped_center%29.jpg/330px-Jair_Bolsonaro_2019_Portrait_%283x4_cropped_center%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',22);
+insert into candidatos (nome, foto, num) values ('Adolf Hitler','https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Adolf_Hitler_cropped_restored_3x4.jpg/250px-Adolf_Hitler_cropped_restored_3x4.jpg?utm_source=pt.wikiquote.org&utm_campaign=parser&utm_content=thumbnail',45);
+insert into candidatos (nome, foto, num) values ('Cabo Daciolo','https://www.cartacapital.com.br/wp-content/uploads/2021/10/Sem-T%C3%ADtulo-41-2.jpg',29);

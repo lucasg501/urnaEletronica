@@ -1,0 +1,185 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Votação",
+    "description": "API para gerenciamento de votos e candidatos em uma eleição",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:4000/"
+    }
+  ],
+  "paths": {
+    "/votos/listar": {
+      "get": {
+        "tags": [
+          "Votos"
+        ],
+        "summary": "Endpoint para listar todos os votos",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/votos/obter/{num}": {
+      "get": {
+        "tags": [
+          "Votos"
+        ],
+        "summary": "Endpoint para obter um voto pelo número do candidato",
+        "description": "",
+        "parameters": [
+          {
+            "name": "num",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/votos/gravar": {
+      "post": {
+        "tags": [
+          "Votos"
+        ],
+        "summary": "Endpoint para gravar um voto",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/votos"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/votos/gravar2": {
+      "post": {
+        "tags": [
+          "Votos"
+        ],
+        "summary": "Endpoint para gravar um voto",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/votos"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/candidatos/listar": {
+      "get": {
+        "tags": [
+          "Candidatos"
+        ],
+        "summary": "Endpoint para listar todos os candidatos",
+        "description": "",
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    },
+    "/candidatos/obter/{num}": {
+      "get": {
+        "tags": [
+          "Candidatos"
+        ],
+        "summary": "Endpoint para obter um candidato pelo número",
+        "description": "",
+        "parameters": [
+          {
+            "name": "num",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "votos": {
+        "type": "object",
+        "properties": {
+          "idVoto": {
+            "type": "number",
+            "example": 0
+          },
+          "idCand": {
+            "type": "number",
+            "example": 45
+          }
+        }
+      },
+      "candidatos": {
+        "type": "object",
+        "properties": {
+          "idCand": {
+            "type": "number",
+            "example": 0
+          },
+          "nome": {
+            "type": "string",
+            "example": "Candidato"
+          },
+          "foto": {
+            "type": "string",
+            "example": "http://exemplo"
+          },
+          "num": {
+            "type": "string",
+            "example": "45"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "apiKeyAuth": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "Authorization",
+        "description": "Chave de API para autenticação"
+      }
+    }
+  }
+}
