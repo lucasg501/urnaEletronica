@@ -170,31 +170,41 @@ export default function Home() {
   }
 
   // ============================================================
-  // CONFIRMAR VOTO
+  // SOM
   // ============================================================
-
-  function tocarSomConfirmacao() {
-    const audio = new Audio("/fim-som-da-urna.mp3");
-
-    audio.play().catch((error) => {
-      console.error("Não foi possível reproduzir o som:", error);
-    });
-  }
 
   function tocarSomConfirmacao() {
     let arquivoSom = "/fim-som-da-urna.mp3";
 
     if (Number(candidato?.num) === 13) {
-      arquivoSom = "/fazl.mp3";
+      arquivoSom = "/lula2.mp3";
     }
-    if(Number(candidato?.num) === 22){
+    if (Number(candidato?.num) === 22) {
       arquivoSom = "/bolsonaro.mp3";
     }
-    if(Number(candidato?.num) === 29){
+    if (Number(candidato?.num) === 29) {
       arquivoSom = "/daciolo.mp3";
     }
-    if(Number(candidato?.num) === 45){
-      arquivoSom = "/german.mp3";
+    if (Number(candidato?.num) === 45) {
+      arquivoSom = "/nain.mp3";
+    }
+    if (Number(candidato?.num) === 12) {
+      arquivoSom = "/ciro.mp3";
+    }
+    if( Number(candidato?.num) === 23) {
+      arquivoSom = "/chupetinha.mp3";
+    }
+    if(Number(candidato?.num) === 11) {
+      arquivoSom = "/temer.mp3";
+    }
+    if(Number(candidato?.num) === 10) {
+      arquivoSom = "/dilma2.mp3";
+    }
+    if(Number(candidato?.num) === 99) {
+      arquivoSom = "/chad.mp3";
+    }
+    if(Number(candidato?.num) === 50) {
+      arquivoSom = "/cena.mp3";
     }
 
     const audio = new Audio(arquivoSom);
@@ -203,6 +213,23 @@ export default function Home() {
       console.error("Não foi possível reproduzir o som:", error);
     });
   }
+
+  /*
+   * Toca o som assim que a foto do candidato aparece na tela
+   * (ou seja, assim que "candidato" é definido com uma foto).
+   * O voto em branco não tem foto, então continua sendo tratado
+   * separadamente dentro de confirmar().
+   */
+  useEffect(() => {
+    if (candidato && !candidato.branco && candidato.foto) {
+      tocarSomConfirmacao();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [candidato]);
+
+  // ============================================================
+  // CONFIRMAR VOTO
+  // ============================================================
 
   async function confirmar() {
     if (carregando) {
@@ -222,7 +249,10 @@ export default function Home() {
      * Voto em branco
      */
     if (candidato.branco) {
-      tocarSomConfirmacao();
+      const audio = new Audio("/fim-som-da-urna.mp3");
+      audio.play().catch((error) => {
+        console.error("Não foi possível reproduzir o som:", error);
+      });
 
       alert("VOTO EM BRANCO CONFIRMADO!");
 
@@ -270,9 +300,6 @@ export default function Home() {
           `Erro ao gravar voto [${response.status}]${detalhe}`
         );
       }
-
-      // 🔊 SOM DA URNA
-      tocarSomConfirmacao();
 
       alert(
         modoGravacao === "gravar"

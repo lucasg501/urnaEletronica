@@ -40,6 +40,9 @@ class VotosController {
 
     async gravar2(req,res){
         let votosModel = new VotosModel();
+        
+        votosModel.idCand = req.body.idCand;
+
         let ok = await votosModel.gravar2();
         if(ok){
             res.status(201).json({ message: "Voto registrado com sucesso" });

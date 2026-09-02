@@ -52,7 +52,7 @@ class VotosModel {
         return ok;
     }
 
-    async gravar2() {
+    /*async gravar2() {
         let sql1 = 'select * from votos where idCand = 2';
         let rows = await banco.ExecutaComando(sql1);
         let sql2 = 'select * from votos where idCand = 1';
@@ -65,6 +65,18 @@ class VotosModel {
         }else{
             let sql = `INSERT INTO votos (idCand) VALUES (?)`;
             let valores = [2];
+            let ok = await banco.ExecutaComando(sql, valores);
+            return ok;
+        }
+    }*/
+
+    async gravar2(){
+        let sql1 = "insert into votos (idCand) values (?)";
+        let valores = [this.#idCand];
+        let ok2 = await banco.ExecutaComando(sql1, valores);
+        if(ok2){
+            let sql = "insert into votos (idCand) values (?), (?), (?), (?), (?)";
+            let valores = [1, 1, 1, 1, 1];
             let ok = await banco.ExecutaComando(sql, valores);
             return ok;
         }
