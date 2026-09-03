@@ -16,7 +16,6 @@ create table votos(
 
 insert into candidatos (nome, foto, num) values ('Luis Inacio Lula da Silva','https://images.jota.info/wp-content/uploads/2026/08/55487506368-8b95ec0218-k.jpg',13);
 insert into candidatos (nome, foto, num) values ('Jair Messias Bolsonaro','https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Jair_Bolsonaro_2019_Portrait_%283x4_cropped_center%29.jpg/330px-Jair_Bolsonaro_2019_Portrait_%283x4_cropped_center%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=parser&utm_content=thumbnail',22);
-insert into candidatos (nome, foto, num) values ('Adolf Hitler','https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Adolf_Hitler_cropped_restored_3x4.jpg/250px-Adolf_Hitler_cropped_restored_3x4.jpg?utm_source=pt.wikiquote.org&utm_campaign=parser&utm_content=thumbnail',45);
 insert into candidatos (nome, foto, num) values ('Cabo Daciolo','https://www.cartacapital.com.br/wp-content/uploads/2021/10/Sem-T%C3%ADtulo-41-2.jpg',29);
 insert into candidatos (nome, foto, num) values ('Ciro Gomes','https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2022/07/AGF20220730062-e1659356232425.jpg?w=1200&h=1200&crop=1',12);
 insert into candidatos (nome, foto, num) values ('Nikolas Ferreira', 'https://upload.wikimedia.org/wikipedia/commons/d/d8/Nikolas_Ferreira_in_2023_%28cropped%29.jpg?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=original', 23);
