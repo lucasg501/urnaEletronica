@@ -25,4 +25,11 @@ insert into candidatos (nome, foto, num) values ('Dilma Rousseff','https://encry
 insert into candidatos (nome, foto, num) values ('Giga Chad','https://i.scdn.co/image/ab67616d00001e024198c92ec28483da79c7894d',99);
 insert into candidatos (nome, foto, num) values ('John Cena','https://play-lh.googleusercontent.com/XrnuUDdehLQGw8oWOP7XRvY93x3ffH_gWu1sNoW108cm2pTIShtqwtctaqmv4FQjEHfMcgo99-9CUqK6wH0pJjM',50);
 insert into candidatos (nome, foto,num) values ('Lobisomem Pidão', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVc-IC8TvbTGZ9IUW6aaUpjg_rqTewjanQq85p5D66OVAqrzJx0x192FSt&s=10', 66);
+insert into candidatos (nome, foto, num) values ('Luan Gameplay', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTouhh7tQ7i6ElnqfqFnJiRfySS8FJNs8pXl3rb8SeovOFzz_A4zzT1H8Wv&s=10', 69);
+insert into candidatos (nome, foto, num) values ('Mario','https://i.pinimg.com/originals/e4/11/f3/e411f32e7d11d0b9209ee11ade20311a.gif',64);
+insert into candidatos (nome, foto, num) values ('Godzilla','https://media1.tenor.com/m/2A7RMwMBfX4AAAAd/godzilla-fortnite.gif',01);
+insert into candidatos (nome, foto, num) values ('Nando Moura','https://makeagif.com/i/xyI1wz',80);
+insert into candidatos (nome, foto, num) values ('Cavalo Homosexual De Las Montanas','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhtewuOEd-QugQSXLz4TniCjRyLwSAO173948z2s5ZE_ldnt_-Tvj-g2ak&s=10',70);
+
+;
 
