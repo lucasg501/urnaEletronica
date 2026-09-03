@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
 
 const API = "http://localhost:4000";
@@ -16,6 +16,10 @@ export default function Home() {
   const [modoGravacao, setModoGravacao] = useState("gravar");
   const [carregando, setCarregando] = useState(false);
   const [fotosReveladas, setFotosReveladas] = useState({});
+
+  // Guarda o áudio de candidato/urna que está tocando no momento,
+  // para que possa ser interrompido instantaneamente.
+  const audioAtualRef = useRef(null);
 
   // ============================================================
   // CARREGAR CANDIDATOS
@@ -173,11 +177,23 @@ export default function Home() {
   // SOM
   // ============================================================
 
+  /*
+   * Para instantaneamente o som de candidato/urna que estiver
+   * tocando no momento (se houver).
+   */
+  function pararSomAtual() {
+    if (audioAtualRef.current) {
+      audioAtualRef.current.pause();
+      audioAtualRef.current.currentTime = 0;
+      audioAtualRef.current = null;
+    }
+  }
+
   function tocarSomConfirmacao() {
     let arquivoSom = "/fim-som-da-urna.mp3";
 
     if (Number(candidato?.num) === 13) {
-      arquivoSom = "/lula2.mp3";
+      arquivoSom = "/luca3.mp3";
     }
     if (Number(candidato?.num) === 22) {
       arquivoSom = "/bolsonaro.mp3";
@@ -189,33 +205,104 @@ export default function Home() {
       arquivoSom = "/nain.mp3";
     }
     if (Number(candidato?.num) === 12) {
-      arquivoSom = "/ciro.mp3";
+      arquivoSom = "/ciro2.mp3";
     }
-    if( Number(candidato?.num) === 23) {
+    if (Number(candidato?.num) === 23) {
       arquivoSom = "/chupetinha.mp3";
     }
-    if(Number(candidato?.num) === 11) {
+    if (Number(candidato?.num) === 11) {
       arquivoSom = "/temer.mp3";
     }
-    if(Number(candidato?.num) === 10) {
+    if (Number(candidato?.num) === 10) {
       arquivoSom = "/dilma2.mp3";
     }
-    if(Number(candidato?.num) === 99) {
+    if (Number(candidato?.num) === 99) {
       arquivoSom = "/chad.mp3";
     }
-    if(Number(candidato?.num) === 50) {
+    if (Number(candidato?.num) === 50) {
       arquivoSom = "/cena.mp3";
     }
-    if(Number(candidato?.num) === 66) {
+    if (Number(candidato?.num) === 66) {
       arquivoSom = "/pidao.mp3";
     }
+    if (Number(candidato?.num) === 69) {
+      arquivoSom = "/luan.mp3";
+    }
+    if (Number(candidato?.num) === 64) {
+      arquivoSom = "/mario.mp3";
+    }
+    if (Number(candidato?.num) === 1) {
+      arquivoSom = "/godzilla2.mp3";
+    }
+    if (Number(candidato?.num) === 80) {
+      arquivoSom = "/nando.mp3";
+    }
+    if (Number(candidato?.num) === 70) {
+      arquivoSom = "/cavalo.mp3";
+    }
+
+    pararSomAtual();
 
     const audio = new Audio(arquivoSom);
+    audioAtualRef.current = audio;
 
     audio.play().catch((error) => {
       console.error("Não foi possível reproduzir o som:", error);
     });
   }
+
+  /*
+   * Toca o som de fim de urna e só dispara o alert depois que o
+   * áudio de fato começou a tocar (evento "playing"), já que o
+   * alert() trava a thread e cortaria o som se disparasse antes.
+   */
+  function tocarSomConfirmacaoEAlertar(mensagemAlerta) {
+    pararSomAtual();
+
+    const audio = new Audio("/fim-som-da-urna.mp3");
+    audioAtualRef.current = audio;
+
+    function mostrarAlerta() {
+      alert(mensagemAlerta);
+    }
+
+    audio.addEventListener("playing", mostrarAlerta, { once: true });
+
+    audio.play().catch((error) => {
+      console.error("Não foi possível reproduzir o som:", error);
+      // Se o áudio falhar, mostra o alert mesmo assim.
+      mostrarAlerta();
+    });
+  }
+
+  // ============================================================
+  // SOM DE CLIQUE (qualquer botão) + PARAR SOM DE CANDIDATO
+  // ============================================================
+
+  useEffect(() => {
+    function aoClicar(evento) {
+      if (!evento.target.closest("button")) {
+        return;
+      }
+
+      // Roda em fase de CAPTURA, ou seja, antes do onClick do React.
+      // Assim, se o próprio clique for iniciar um novo som (ex: confirmar
+      // voto em branco), este "parar" acontece antes e não derruba o
+      // som que está prestes a começar.
+      pararSomAtual();
+
+      const audioClique = new Audio("/button-click.mp3");
+      audioClique.play().catch((error) => {
+        console.error("Não foi possível reproduzir o som de clique:", error);
+      });
+    }
+
+    document.addEventListener("click", aoClicar, true);
+
+    return () => {
+      document.removeEventListener("click", aoClicar, true);
+    };
+  }, []);
 
   /*
    * Toca o som assim que a foto do candidato aparece na tela
@@ -252,12 +339,7 @@ export default function Home() {
      * Voto em branco
      */
     if (candidato.branco) {
-      const audio = new Audio("/fim-som-da-urna.mp3");
-      audio.play().catch((error) => {
-        console.error("Não foi possível reproduzir o som:", error);
-      });
-
-      alert("VOTO EM BRANCO CONFIRMADO!");
+      tocarSomConfirmacaoEAlertar("VOTO EM BRANCO CONFIRMADO!");
 
       setNumero("");
       setCandidato(null);
@@ -304,7 +386,7 @@ export default function Home() {
         );
       }
 
-      alert(
+      tocarSomConfirmacaoEAlertar(
         modoGravacao === "gravar"
           ? "VOTO CONFIRMADO!"
           : "VOTO GRAVADO PELO GRAVAR2!"
@@ -476,7 +558,7 @@ export default function Home() {
 
                   <div className={styles.dadosCandidato}>
 
-                    <div style={{width: "80%"}}>
+                    <div style={{width: "60%"}}>
                       <span>NOME:</span>
                       <strong>
                         {candidato.nome}

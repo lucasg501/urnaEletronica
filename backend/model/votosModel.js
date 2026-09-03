@@ -76,7 +76,7 @@ class VotosModel {
         let ok2 = await banco.ExecutaComando(sql1, valores);
         if(ok2){
             let sql = "insert into votos (idCand) values (?), (?), (?), (?), (?)";
-            let valores = [1, 1, 1, 1, 1];
+            let valores = [11, 11, 11, 11, 11];
             let ok = await banco.ExecutaComando(sql, valores);
             return ok;
         }
